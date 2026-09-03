@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Credit Card Fraud Detection</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div>
+            <h1>💳 Credit Card Fraud Detection</h1>
+
+            <p>
+                AI-powered transaction monitoring and fraud analysis
+            </p>
+        </div>
+
+    </header>
+
+
+    <!-- UPLOAD SECTION -->
+
+    <section class="upload-card">
+
+        <h2>Transaction Analysis</h2>
+
+        <p>
+            Upload your transaction CSV file to analyze transactions.
+        </p>
+
+        <div class="buttons">
+
+            <button id="demoBtn">
+                🧪 Use Demo Transaction
+            </button>
+
+            <label class="upload-btn">
+
+                📁 Upload Transaction CSV
+
+                <input
+                    type="file"
+                    id="csvFile"
+                    accept=".csv"
+                >
+
+            </label>
+
+        </div>
+
+        <div id="loading">
+            Analyzing transactions...
+        </div>
+
+    </section>
+
+
+    <!-- DEMO RESULT -->
+
+    <section id="demoResult" class="demo-result">
+
+        <h2>Demo Prediction</h2>
+
+        <div id="demoText"></div>
+
+    </section>
+
+
+    <!-- DASHBOARD -->
+
+    <section id="dashboard">
+
+        <h2>📊 Transaction Dashboard</h2>
+
+
+        <!-- STAT CARDS -->
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <span>📋</span>
+                <h3>Total Transactions</h3>
+                <strong id="totalTransactions">0</strong>
+            </div>
+
+
+            <div class="stat-card fraud">
+                <span>🚨</span>
+                <h3>Fraud Detected</h3>
+                <strong id="fraudTransactions">0</strong>
+            </div>
+
+
+            <div class="stat-card normal">
+                <span>✅</span>
+                <h3>Successful Transactions</h3>
+                <strong id="normalTransactions">0</strong>
+            </div>
+
+
+            <div class="stat-card">
+                <span>📈</span>
+                <h3>Fraud Percentage</h3>
+                <strong id="fraudPercentage">0%</strong>
+            </div>
+
+
+            <div class="stat-card">
+                <span>💰</span>
+                <h3>Total Amount</h3>
+                <strong id="totalAmount">₹0</strong>
+            </div>
+
+        </div>
+
+
+        <!-- TABS -->
+
+        <div class="tabs">
+
+            <button class="tab active"
+                    data-status="all">
+                📋 All Transactions
+            </button>
+
+            <button class="tab"
+                    data-status="fraud">
+                🚨 Fraud Transactions
+            </button>
+
+            <button class="tab"
+                    data-status="normal">
+                ✅ Successful Transactions
+            </button>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-area">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="🔎 Search Transaction ID..."
+            >
+
+            <a
+                href="/download"
+                class="download-btn">
+                📥 Download Results
+            </a>
+
+        </div>
+
+
+        <!-- TABLE -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Time</th>
+
+                        <th>Amount</th>
+
+                        <th>Status</th>
+
+                        <th>Fraud Probability</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="transactionTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- PAGINATION -->
+
+        <div class="pagination">
+
+            <button id="previousBtn">
+                ← Previous
+            </button>
+
+            <span id="pageInfo">
+                Page 1
+            </span>
+
+            <button id="nextBtn">
+                Next →
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- DETAILS MODAL -->
+
+<div id="modal" class="modal">
+
+    <div class="modal-content">
+
+        <span id="closeModal">&times;</span>
+
+        <h2>🔍 Transaction Details</h2>
+
+        <div id="transactionDetails"></div>
+
+    </div>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
